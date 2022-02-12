@@ -1,0 +1,82 @@
+//CREATE USER 🥇
+
+* request url: https://reqres.in/api/users
+* requestType: POST
+
+* request body: 
+{
+    "name": "Orji",
+    "job": "Snr QA Engineer"
+}
+
+
+* Assertions:
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([201, 202]);
+});
+var jsonObject = xml2Json(responseBody);
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([201, 202]);
+});
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("Created");
+});
+pm.test("Response time is less than 200ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+
+
+
+//UPDATE USER 🥈
+
+* request url: https://reqres.in/api/users/2
+* requestType: PUT
+
+* requestBody: 
+{
+    "name": "Orji Innocent",
+    "job": "QA Engineer"
+}
+
+
+* Assertions
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Body matches string", function () {
+    pm.expect(pm.response.text()).to.include("Orji Innocent");
+});
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+pm.test("Successful PUT request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200]);
+});
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("updatedAt");
+});
+
+
+
+
+// LIST SINGLE USER 🥉
+
+* request url: https://reqres.in/api/users/2
+* requestType: GET
+
+* Assertions:
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Body matches string", function () {
+    pm.expect(pm.response.text()).to.include("email");
+});
+
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+
